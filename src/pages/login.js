@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
 import AppIcon from "../images/thunder.svg";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 //MUI
@@ -29,13 +28,12 @@ class login extends Component {
 			errors: {}
 		};
 	}
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		if (nextProps.UI.errors) {
 			this.setState({ errors: nextProps.UI.errors });
 		}
 	}
 
-	com;
 	handleSubmit = event => {
 		event.preventDefault();
 
@@ -143,3 +141,19 @@ export default connect(
 	mapStateToProps,
 	mapActionsToProps
 )(withStyles(styles)(login));
+
+// axios
+// 			.post("/signup", newUserData)
+// 			.then(res => {
+// 				console.log(res.data);
+// 				localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
+// 				this.setState({ loading: false });
+// 				this.props.history.push("/");
+// 			})
+// 			.catch(err => {
+// 				console.log(err);
+// 				this.setState({
+// 					errors: err.response.data,
+// 					loading: false
+// 				});
+// 			});

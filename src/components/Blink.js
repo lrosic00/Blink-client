@@ -28,15 +28,7 @@ class Blink extends Component {
 		dayjs.extend(relativeTime);
 		const {
 			classes,
-			blink: {
-				body,
-				createdAt,
-				userImage,
-				username,
-				blinkId,
-				likeCount,
-				commentCount
-			}
+			blink: { body, createdAt, userImage, username }
 		} = this.props;
 
 		return (

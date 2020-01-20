@@ -4,6 +4,7 @@ import axios from "axios";
 import Grid from "@material-ui/core/Grid";
 
 import Blink from "../components/Blink";
+import Profile from "../components/Profile";
 
 export class home extends Component {
 	state = {
@@ -33,7 +34,7 @@ export class home extends Component {
 		return (
 			<Grid container spacing={6}>
 				<Grid item sm={4} xs={12}>
-					<p>profile ...</p>
+					<Profile />
 				</Grid>
 				<Grid item sm={8} xs={12}>
 					{recentBlinksMarkup}
