@@ -14,7 +14,6 @@ export class home extends Component {
 		axios
 			.get("/blinks")
 			.then(res => {
-				console.log(res.data);
 				this.setState({
 					blinks: res.data
 				});

@@ -35,7 +35,6 @@ if (token) {
 		axios.defaults.headers.common["Authorization"] = token;
 		store.dispatch(getUserData());
 	}
-	debugger;
 }
 
 function App() {
