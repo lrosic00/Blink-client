@@ -24,6 +24,9 @@ import signup from "./pages/signup";
 
 const theme = createMuiTheme(themeFile);
 
+axios.defaults.baseURL =
+	"https://europe-west1-blink-sm-platform.cloudfunctions.net/api";
+
 const token = localStorage.FBIdToken;
 if (token) {
 	const decodedToken = jwtDecode(token);
