@@ -3,12 +3,36 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
 		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
 		sans-serif;
-	background-color: rgb(245, 245, 245);
+	/* background-color: rgb(245, 245, 245); */
+	background: #c02425; /* fallback for old browsers */
+	background: -webkit-linear-gradient(
+		to right,
+		#f0cb35,
+		#c02425
+	); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		to right,
+		#f0cb35,
+		#c02425
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	margin: 0;
+	background-color: rgb(0, 0, 0, 0.6);
+	color: white;
 }
 
 .container {
 	margin: 80px auto 0 auto;
 	max-width: 1200px;
+}
+.mainPage {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+.blackTransparentBG {
+	background-color: rgb(0, 0, 0, 0.6);
+
+	flex-grow: 1;
 }
 .nav-container {
 	margin: auto;
@@ -17,15 +41,36 @@ a {
 	text-decoration: none;
 }
 .nav-color {
-	background: #0b486b; /* fallback for old browsers */
+	background: #c02425; /* fallback for old browsers */
 	background: -webkit-linear-gradient(
 		to right,
-		#f56217,
-		#0b486b
+		#f0cb35,
+		#c02425
 	); /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(
 		to right,
-		#f56217,
-		#0b486b
+		#f0cb35,
+		#c02425
 	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+/*######## VERY DANGEROUS BE CAREFUL WITH THESE ########*/
+
+/* TODO Fix navbar border */
+.MuiDialog-paper {
+	border: 1px solid #ffd600 !important;
+	background-color: rgb(0, 0, 0, 0.9) !important;
+	color: white !important;
+}
+.MuiPaper-elevation1 {
+	border: 1px solid #ffd600 !important;
+}
+.MuiFormLabel-root {
+	color: white !important;
+}
+.MuiInputBase-input {
+	color: white !important;
+}
+.MuiInput-underline:before {
+	border-bottom: 1px solid #ffd600 !important;
+}
+/*########                                       ########*/

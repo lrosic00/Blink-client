@@ -25,9 +25,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 
 const styles = theme => ({
-	paper: {
-		padding: 20
-	},
+	paper: { backgroundColor: "rgb(0,0,0,0.8)", padding: 20, color: "inherit" },
 	profile: {
 		"& .image-wrapper": {
 			textAlign: "center",
@@ -51,7 +49,7 @@ const styles = theme => ({
 				verticalAlign: "middle"
 			},
 			"& a": {
-				color: "#0B486B"
+				color: "#ffd600"
 			}
 		},
 		"& hr": {

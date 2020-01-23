@@ -9,11 +9,14 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import { withTheme } from "@material-ui/core";
 
 const styles = {
 	card: {
 		display: "flex",
-		marginBottom: 20
+		marginBottom: 20,
+		backgroundColor: "rgb(0,0,0,0.8)",
+		color: "white"
 	},
 	image: {
 		minWidth: 200
@@ -47,7 +50,7 @@ class Blink extends Component {
 					>
 						{username}
 					</Typography>
-					<Typography variant="body2" color="textSecondary">
+					<Typography variant="body2" style={{ color: "#ffd600" }}>
 						{dayjs(createdAt).fromNow()}
 					</Typography>
 					<Typography variant="body1">{body}</Typography>
