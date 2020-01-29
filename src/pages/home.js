@@ -1,32 +1,21 @@
 import React, { Component } from "react";
-import axios from "axios";
-
+import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 
 import Blink from "../components/Blink";
 import Profile from "../components/Profile";
 
+import { connect } from "react-redux";
+import { getBlinks } from "../redux/actions/dataActions";
+
 export class home extends Component {
-	state = {
-		blinks: null
-	};
 	componentDidMount() {
-		axios
-			.get("/blinks")
-			.then(res => {
-				this.setState({
-					blinks: res.data
-				});
-			})
-			.catch(err => {
-				console.log(err);
-			});
+		this.props.getBlinks();
 	}
 	render() {
-		let recentBlinksMarkup = this.state.blinks ? (
-			this.state.blinks.map(blink => (
-				<Blink key={blink.blinkId} blink={blink} />
-			))
+		const { blinks, loading } = this.props.data;
+		let recentBlinksMarkup = !loading ? (
+			blinks.map(blink => <Blink key={blink.blinkId} blink={blink} />)
 		) : (
 			<p>Loading ...</p>
 		);
@@ -43,4 +32,13 @@ export class home extends Component {
 	}
 }
 
-export default home;
+home.propTypes = {
+	getBlinks: PropTypes.func.isRequired,
+	data: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+	data: state.data
+});
+
+export default connect(mapStateToProps, { getBlinks })(home);

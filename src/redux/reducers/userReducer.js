@@ -2,7 +2,9 @@ import {
 	SET_USER,
 	SET_AUTHENTICATED,
 	SET_UNAUTHENTICATED,
-	LOADING_USER
+	LOADING_USER,
+	LIKE_BLINK,
+	UNLIKE_BLINK
 } from "../types";
 
 const initialState = {
@@ -33,6 +35,24 @@ export default function(state = initialState, action) {
 			return {
 				...state,
 				loading: true
+			};
+		case LIKE_BLINK:
+			return {
+				...state,
+				likes: [
+					...state.likes,
+					{
+						username: state.credentials.username,
+						blinkId: action.payload.blinkId
+					}
+				]
+			};
+		case UNLIKE_BLINK:
+			return {
+				...state,
+				likes: state.likes.filter(
+					like => like.blinkId !== action.payload.blinkId
+				)
 			};
 		default:
 			return state;

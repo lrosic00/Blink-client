@@ -3,6 +3,18 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import PropTypes from "prop-types";
+
+import MyButton from "../util/MyButton";
+
+//Icons
+import ChatIcon from "@material-ui/icons/Chat";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
+
+//Redux
+import { connect } from "react-redux";
+import { likeBlink, unlikeBlink } from "../redux/actions/dataActions";
 
 //MUI stuff
 import Card from "@material-ui/core/Card";
@@ -27,12 +39,56 @@ const styles = {
 	}
 };
 class Blink extends Component {
+	likedBlink = () => {
+		if (
+			this.props.user.likes &&
+			this.props.user.likes.find(
+				like => like.blinkId === this.props.blink.blinkId
+			)
+		) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+	likeBlink = () => {
+		this.props.likeBlink(this.props.blink.blinkId);
+	};
+	unlikeBlink = () => {
+		this.props.unlikeBlink(this.props.blink.blinkId);
+	};
+
 	render() {
 		dayjs.extend(relativeTime);
 		const {
 			classes,
-			blink: { body, createdAt, userImage, username }
+			blink: {
+				body,
+				createdAt,
+				userImage,
+				username,
+				blinkId,
+				likeCount,
+				commentCount
+			},
+			user: { authenticated }
 		} = this.props;
+
+		const likeButton = !authenticated ? (
+			<MyButton tip="Like">
+				<Link to="/login">
+					<FavoriteBorder color="primary" />
+				</Link>
+			</MyButton>
+		) : this.likedBlink() ? (
+			<MyButton tip="Dislike" onClick={this.unlikeBlink}>
+				<FavoriteIcon color="primary" />
+			</MyButton>
+		) : (
+			<MyButton tip="Like" onClick={this.likeBlink}>
+				<FavoriteBorder color="primary" />
+			</MyButton>
+		);
 
 		return (
 			<Card className={classes.card}>
@@ -54,10 +110,35 @@ class Blink extends Component {
 						{dayjs(createdAt).fromNow()}
 					</Typography>
 					<Typography variant="body1">{body}</Typography>
+					{likeButton}
+					<span>{likeCount} Likes </span>
+					<MyButton tip="comments">
+						<ChatIcon color="primary" />
+					</MyButton>
+					<span>{commentCount} comments</span>
 				</CardContent>
 			</Card>
 		);
 	}
 }
 
-export default withStyles(styles)(Blink);
+Blink.propTypes = {
+	likeBlink: PropTypes.func.isRequired,
+	unlikeBlink: PropTypes.func.isRequired,
+	user: PropTypes.object.isRequired,
+	blink: PropTypes.object.isRequired,
+	classes: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+	user: state.user
+});
+const mapActionsToProps = {
+	likeBlink,
+	unlikeBlink
+};
+
+export default connect(
+	mapStateToProps,
+	mapActionsToProps
+)(withStyles(styles)(Blink));
