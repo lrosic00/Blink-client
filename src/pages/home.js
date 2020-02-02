@@ -8,6 +8,8 @@ import Profile from "../components/Profile";
 import { connect } from "react-redux";
 import { getBlinks } from "../redux/actions/dataActions";
 
+import LinearProgress from "@material-ui/core/LinearProgress";
+
 export class home extends Component {
 	componentDidMount() {
 		this.props.getBlinks();
@@ -17,7 +19,7 @@ export class home extends Component {
 		let recentBlinksMarkup = !loading ? (
 			blinks.map(blink => <Blink key={blink.blinkId} blink={blink} />)
 		) : (
-			<p>Loading ...</p>
+			<LinearProgress color="secondary" />
 		);
 		return (
 			<Grid container spacing={6}>

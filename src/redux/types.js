@@ -15,3 +15,5 @@ export const SET_BLINKS = "SET_BLINKS";
 export const SET_BLINK = "SET_BLINK";
 export const LIKE_BLINK = "LIKE_BLINK";
 export const UNLIKE_BLINK = "UNLIKE_BLINK";
+export const DELETE_BLINK = "DELETE_BLINK";
+export const POST_BLINK = "POST_BLINK";
