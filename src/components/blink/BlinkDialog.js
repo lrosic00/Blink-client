@@ -56,13 +56,31 @@ const styles = theme => ({
 
 class BlinkDialog extends Component {
 	state = {
-		open: false
+		open: false,
+		oldPath: "",
+		newPath: ""
 	};
+
+	componentDidMount() {
+		if (this.props.openDialog) {
+			this.handleOpen();
+		}
+	}
+
 	handleOpen = () => {
-		this.setState({ open: true });
+		let oldPath = window.location.pathname;
+		const { username, blinkId } = this.props;
+		const newPath = `/users/${username}/blink/${blinkId}`;
+
+		if (oldPath === newPath) oldPath = `/users/${username}`;
+
+		window.history.pushState(null, null, newPath);
+
+		this.setState({ open: true, oldPath, newPath });
 		this.props.getBlink(this.props.blinkId);
 	};
 	handleClose = () => {
+		window.history.pushState(null, null, this.state.oldPath);
 		this.setState({ open: false });
 		this.props.clearErrors();
 	};

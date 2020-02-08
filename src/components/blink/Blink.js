@@ -91,7 +91,11 @@ class Blink extends Component {
 						<ChatIcon color="primary" />
 					</MyButton>
 					<span>{commentCount} comments</span>
-					<BlinkDialog blinkId={blinkId} username={username} />
+					<BlinkDialog
+						blinkId={blinkId}
+						username={username}
+						openDialog={this.props.openDialog}
+					/>
 				</CardContent>
 			</Card>
 		);
@@ -103,7 +107,8 @@ Blink.propTypes = {
 	unlikeBlink: PropTypes.func.isRequired,
 	user: PropTypes.object.isRequired,
 	blink: PropTypes.object.isRequired,
-	classes: PropTypes.object.isRequired
+	classes: PropTypes.object.isRequired,
+	openDialog: PropTypes.bool
 };
 
 const mapStateToProps = state => ({

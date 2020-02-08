@@ -112,6 +112,16 @@ export const getBlink = blinkId => dispatch => {
 		.catch(err => console.log(err));
 };
 
+export const getUserData = username => dispatch => {
+	dispatch({ type: LOADING_DATA });
+	axios
+		.get(`/user/${username}`)
+		.then(res => {
+			dispatch({ type: SET_BLINKS, payload: res.data.blinks });
+		})
+		.catch(() => dispatch({ type: SET_BLINKS, payload: null }));
+};
+
 export const clearErrors = () => dispatch => {
 	dispatch({ type: CLEAR_ERRORS });
 };
