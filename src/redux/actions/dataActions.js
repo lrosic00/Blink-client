@@ -7,7 +7,10 @@ import {
 	CLEAR_ERRORS,
 	SET_ERRORS,
 	POST_BLINK,
-	LOADING_UI
+	LOADING_UI,
+	SET_BLINK,
+	STOP_LOADING_UI,
+	SUBMIT_COMMENT
 } from "../types";
 import axios from "axios";
 
@@ -37,7 +40,7 @@ export const postBlink = newBlink => dispatch => {
 		.post("/blink", newBlink)
 		.then(res => {
 			dispatch({ type: POST_BLINK, payload: res.data });
-			dispatch({ type: CLEAR_ERRORS });
+			dispatch(clearErrors());
 		})
 		.catch(err => {
 			dispatch({ type: SET_ERRORS, payload: err.response.data });
@@ -75,6 +78,19 @@ export const unlikeBlink = blinkId => dispatch => {
 		});
 };
 
+//Submit a comment
+export const submitComment = (blinkId, commentData) => dispatch => {
+	axios
+		.post(`/blink/${blinkId}/comment`, commentData)
+		.then(res => {
+			dispatch({ type: SUBMIT_COMMENT, payload: res.data });
+			dispatch(clearErrors());
+		})
+		.catch(err => {
+			dispatch({ type: SET_ERRORS, payload: err.response.data });
+		});
+};
+
 //Delete a blink
 export const deleteBlink = blinkId => dispatch => {
 	axios
@@ -83,4 +99,19 @@ export const deleteBlink = blinkId => dispatch => {
 			dispatch({ type: DELETE_BLINK, payload: blinkId });
 		})
 		.catch(err => console.log(err));
+};
+
+export const getBlink = blinkId => dispatch => {
+	dispatch({ type: LOADING_UI });
+	axios
+		.get(`/blink/${blinkId}`)
+		.then(res => {
+			dispatch({ type: SET_BLINK, payload: res.data });
+			dispatch({ type: STOP_LOADING_UI });
+		})
+		.catch(err => console.log(err));
+};
+
+export const clearErrors = () => dispatch => {
+	dispatch({ type: CLEAR_ERRORS });
 };

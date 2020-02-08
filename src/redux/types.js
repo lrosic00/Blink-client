@@ -9,6 +9,7 @@ export const SET_ERRORS = "SET_ERRORS";
 export const LOADING_UI = "LOADING_UI";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const LOADING_DATA = "LOADING_DATA";
+export const STOP_LOADING_UI = "STOP_LOADING_UI";
 
 // Data reducer types
 export const SET_BLINKS = "SET_BLINKS";
@@ -17,3 +18,4 @@ export const LIKE_BLINK = "LIKE_BLINK";
 export const UNLIKE_BLINK = "UNLIKE_BLINK";
 export const DELETE_BLINK = "DELETE_BLINK";
 export const POST_BLINK = "POST_BLINK";
+export const SUBMIT_COMMENT = "SUBMIT_COMMENT";

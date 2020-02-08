@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 
-import Blink from "../components/Blink";
-import Profile from "../components/Profile";
+import Blink from "../components/blink/Blink";
+import Profile from "../components/profile/Profile";
 
 import { connect } from "react-redux";
 import { getBlinks } from "../redux/actions/dataActions";
@@ -22,7 +22,7 @@ export class home extends Component {
 			<LinearProgress color="secondary" />
 		);
 		return (
-			<Grid container spacing={6}>
+			<Grid container spacing={7}>
 				<Grid item sm={4} xs={12}>
 					<Profile />
 				</Grid>

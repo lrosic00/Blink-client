@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import MyButton from "../util/MyButton";
-import PostBlink from "./PostBlink";
+import MyButton from "../../util/MyButton";
+import PostBlink from "../blink/PostBlink";
 
 //Material UI stuff
 import AppBar from "@material-ui/core/AppBar";

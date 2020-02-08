@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 //Redux
 import { connect } from "react-redux";
-import { postBlink } from "../redux/actions/dataActions";
+import { postBlink, clearErrors } from "../../redux/actions/dataActions";
 
 //MUI
 import Button from "@material-ui/core/Button";
@@ -21,14 +21,17 @@ import CloseIcon from "@material-ui/icons/Close";
 const styles = theme => ({
 	...theme.spreadThis,
 	submitButton: {
-		position: "relative"
+		position: "relative",
+		float: "right",
+		marginTop: 10,
+		marginBottom: 10
 	},
 	progressSpinner: {
 		position: "absolute"
 	},
 	closeButton: {
 		position: "absolute",
-		left: "90%",
+		left: "91%",
 		top: "4%",
 		color: "#ef6c00"
 	}
@@ -44,14 +47,14 @@ class PostBlink extends Component {
 			this.setState({ errors: nextProps.UI.errors });
 		}
 		if (!nextProps.UI.errors && !nextProps.UI.loading) {
-			this.setState({ body: "" });
-			this.handleClose();
+			this.setState({ body: "", open: false, errors: {} });
 		}
 	}
 	handleOpen = () => {
 		this.setState({ open: true });
 	};
 	handleClose = () => {
+		this.props.clearErrors();
 		this.setState({ open: false, errors: {} });
 	};
 	handleChange = event => {
@@ -126,6 +129,7 @@ class PostBlink extends Component {
 
 PostBlink.propTypes = {
 	postBlink: PropTypes.func.isRequired,
+	clearErrors: PropTypes.func.isRequired,
 	loading: PropTypes.object.isRequired
 };
 
@@ -133,6 +137,6 @@ const mapStateToProps = state => ({
 	UI: state.UI
 });
 
-export default connect(mapStateToProps, { postBlink })(
+export default connect(mapStateToProps, { postBlink, clearErrors })(
 	withStyles(styles)(PostBlink)
 );

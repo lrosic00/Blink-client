@@ -7,14 +7,15 @@ import EditDetails from "./EditDetails";
 
 //Redux
 import { connect } from "react-redux";
-import { logoutUser, uploadImage } from "../redux/actions/userActions";
+import { logoutUser, uploadImage } from "../../redux/actions/userActions";
 
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 //MUI
 import Button from "@material-ui/core/Button";
 import MuiLink from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 //Icons
 import LocationOn from "@material-ui/icons/LocationOn";
@@ -156,7 +157,7 @@ class Profile extends Component {
 			) : (
 				<Paper className={classes.paper}>
 					<Typography variant="body2" align="center">
-						No profile found, please login
+						Profile not found
 					</Typography>
 					<div className={classes.buttons}>
 						<Button
@@ -179,7 +180,7 @@ class Profile extends Component {
 				</Paper>
 			)
 		) : (
-			<p> loading...</p>
+			<LinearProgress color="secondary" />
 		);
 
 		return profileMarkup;

@@ -5,17 +5,17 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from "prop-types";
 
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 import DeleteBlink from "./DeleteBlink";
+import BlinkDialog from "./BlinkDialog";
+import LikeButton from "./LikeButton";
 
 //Icons
 import ChatIcon from "@material-ui/icons/Chat";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 
 //Redux
 import { connect } from "react-redux";
-import { likeBlink, unlikeBlink } from "../redux/actions/dataActions";
+import { likeBlink, unlikeBlink } from "../../redux/actions/dataActions";
 
 //MUI stuff
 import Card from "@material-ui/core/Card";
@@ -40,25 +40,6 @@ const styles = {
 	}
 };
 class Blink extends Component {
-	likedBlink = () => {
-		if (
-			this.props.user.likes &&
-			this.props.user.likes.find(
-				like => like.blinkId === this.props.blink.blinkId
-			)
-		) {
-			return true;
-		} else {
-			return false;
-		}
-	};
-	likeBlink = () => {
-		this.props.likeBlink(this.props.blink.blinkId);
-	};
-	unlikeBlink = () => {
-		this.props.unlikeBlink(this.props.blink.blinkId);
-	};
-
 	render() {
 		dayjs.extend(relativeTime);
 		const {
@@ -77,22 +58,6 @@ class Blink extends Component {
 				credentials: { username: userHandle }
 			}
 		} = this.props;
-
-		const likeButton = !authenticated ? (
-			<MyButton tip="Like">
-				<Link to="/login">
-					<FavoriteBorder color="primary" />
-				</Link>
-			</MyButton>
-		) : this.likedBlink() ? (
-			<MyButton tip="Dislike" onClick={this.unlikeBlink}>
-				<FavoriteIcon color="primary" />
-			</MyButton>
-		) : (
-			<MyButton tip="Like" onClick={this.likeBlink}>
-				<FavoriteBorder color="primary" />
-			</MyButton>
-		);
 
 		const deleteButton =
 			authenticated && username === userHandle ? (
@@ -115,17 +80,18 @@ class Blink extends Component {
 					>
 						{username}
 					</Typography>
+					{deleteButton}
 					<Typography variant="body2" style={{ color: "#ffd600" }}>
 						{dayjs(createdAt).fromNow()}
 					</Typography>
 					<Typography variant="body1">{body}</Typography>
-					{likeButton}
+					<LikeButton blinkId={blinkId} />
 					<span>{likeCount} Likes </span>
 					<MyButton tip="comments">
 						<ChatIcon color="primary" />
 					</MyButton>
 					<span>{commentCount} comments</span>
-					{deleteButton}
+					<BlinkDialog blinkId={blinkId} username={username} />
 				</CardContent>
 			</Card>
 		);
