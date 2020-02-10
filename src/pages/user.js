@@ -52,8 +52,7 @@ class user extends Component {
 					return <Blink key={blink.blinkId} blink={blink} openDialog={true} />;
 			})
 		);
-		{
-		}
+
 		return (
 			<Grid container spacing={7}>
 				<Grid item sm={4} xs={12}>

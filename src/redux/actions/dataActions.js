@@ -52,7 +52,6 @@ export const likeBlink = blinkId => dispatch => {
 	axios
 		.get(`/blink/${blinkId}/like`)
 		.then(res => {
-			console.log(res);
 			dispatch({
 				type: LIKE_BLINK,
 				payload: res.data
