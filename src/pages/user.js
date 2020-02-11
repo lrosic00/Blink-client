@@ -11,6 +11,7 @@ import { getUserData } from "../redux/actions/dataActions";
 
 //MUI
 import Grid from "@material-ui/core/Grid";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 class user extends Component {
 	state = {
@@ -39,7 +40,7 @@ class user extends Component {
 		const { blinkIdParam } = this.state;
 
 		const blinksMarkup = loading ? (
-			<p>loading data...</p>
+			<LinearProgress color="secondary" />
 		) : blinks === null ? (
 			<p>no blinks from this user</p>
 		) : !blinkIdParam ? (
@@ -57,7 +58,7 @@ class user extends Component {
 			<Grid container spacing={7}>
 				<Grid item sm={4} xs={12}>
 					{this.state.profile === null ? (
-						<p>loading profile...</p>
+						<LinearProgress color="secondary" />
 					) : (
 						<StaticProfile profile={this.state.profile} />
 					)}

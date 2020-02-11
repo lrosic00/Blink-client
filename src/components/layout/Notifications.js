@@ -93,7 +93,7 @@ class Notifications extends Component {
 					);
 				})
 			) : (
-				<MenuItem onClick={this.handleClose}>
+				<MenuItem onClick={this.handleClose} style={{ color: "white" }}>
 					You have no notifications yet!
 				</MenuItem>
 			);

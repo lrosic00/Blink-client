@@ -86,4 +86,8 @@ a {
 
 	border: 1px solid #ffd600 !important;
 }
+
+.MuiBadge-anchorOriginTopRightRectangle {
+	border: 1.5px solid black;
+}
 /*########                                       ########*/
