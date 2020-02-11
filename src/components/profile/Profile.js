@@ -149,7 +149,7 @@ class Profile extends Component {
 						</div>
 
 						<MyButton tip="Logout" onClick={this.handleLogout}>
-							<KeyboardReturn color="primary" />
+							<KeyboardReturn color="secondary" />
 						</MyButton>
 						<EditDetails />
 					</div>

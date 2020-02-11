@@ -70,7 +70,7 @@ class Notifications extends Component {
 				notifications.map(not => {
 					const verb = not.type === "like" ? "liked" : "commented on";
 					const time = dayjs(not.createdAt).fromNow();
-					const iconColor = not.read ? "primary" : "secondary";
+					const iconColor = not.read ? "error" : "primary";
 					const icon =
 						not.type === "like" ? (
 							<FavoriteIcon color={iconColor} style={{ marginRight: 10 }} />

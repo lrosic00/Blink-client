@@ -86,7 +86,7 @@ class PostBlink extends Component {
 						onClick={this.handleClose}
 						tipClassName={classes.closeButton}
 					>
-						<CloseIcon />
+						<CloseIcon color="secondary" />
 					</MyButton>
 					<DialogTitle>Post a new blink</DialogTitle>
 					<DialogContent>

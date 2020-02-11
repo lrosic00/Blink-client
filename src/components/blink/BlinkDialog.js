@@ -41,7 +41,7 @@ const styles = theme => ({
 		position: "absolute",
 		left: "91%",
 		// top: "4%",
-		color: "#ef6c00"
+		color: "#2c71d8"
 	},
 	expandButton: {
 		position: "absolute",

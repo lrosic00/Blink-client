@@ -7,10 +7,13 @@ export default {
 			contrastText: "#fafafa"
 		},
 		secondary: {
-			main: "#ef6c00",
+			main: "#2c71d8",
 			light: "",
 			dark: "",
 			contrastText: "#fafafa"
+		},
+		error: {
+			main: "#ffd600"
 		}
 	},
 	spreadThis: {
